@@ -11,6 +11,6 @@ public class Product {
 
     @PostMapping("product")
     public String hello() {
-        return "Hello";
+        return "Helloa";
     }
 }

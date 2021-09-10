@@ -3,7 +3,7 @@ package com.example.rest.product;
 public class CustomerDetails {
     int age;
     boolean student;
-    String income;
+    int income;
 
     public int getAge() {
         return age;
@@ -21,15 +21,15 @@ public class CustomerDetails {
         this.student = student;
     }
 
-    public String getIncome() {
+    public int getIncome() {
         return income;
     }
 
-    public void setIncome(String income) {
+    public void setIncome(int income) {
         this.income = income;
     }
 
-    public CustomerDetails (int age, boolean student, String income) {
+    public CustomerDetails (int age, boolean student, int income) {
         this.age = age;
         this.student = student;
         this.income = income;

@@ -17,6 +17,14 @@ public class Product {
     @PostMapping("get/products")
     public CustomerDetails postBody(@RequestBody CustomerDetails customerDetails) {
 //        System.out.print(customerDetails);
+        int age = customerDetails.age;
+        int income = customerDetails.income;
+        boolean student = customerDetails.student;
+        if(student == true && income > 100) {
+            System.out.print("yes");
+        } else {
+            System.out.print("no");
+        }
         return customerDetails;
     }
 

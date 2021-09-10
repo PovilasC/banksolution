@@ -26,6 +26,12 @@ public class Product {
         if(age < 18){
             product = "Junior Saver Account";
         }
+
+        // Senior Account
+        if(age >= 65){
+            product = "Senior Account";
+        }
+
         // Current Account Plus
        if(income > 40000 && age > 17){
            product = "Current Account Plus";
@@ -33,10 +39,6 @@ public class Product {
         // Student Account
         if(student == true && age > 17){
             product = "Student Account";
-        }
-        // Senior Account
-        if(age >= 65){
-            product = "Senior Account";
         }
         return product;
     }

@@ -43,5 +43,9 @@ public class Product {
         return product;
     }
 
+    public String sendProductOffer(String offer){
+        return "Hello";
+    }
+
 
 }

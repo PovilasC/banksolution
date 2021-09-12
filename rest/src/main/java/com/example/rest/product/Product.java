@@ -1,6 +1,7 @@
 package com.example.rest.product;
 import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.web.bind.annotation.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -20,20 +21,21 @@ public class Product {
         int age = customerDetails.age;
         int income = customerDetails.income;
         boolean student = customerDetails.student;
-
+        System.out.print(customerDetails.student);
         String product = "";
+
+        // Senior Account
+        if(age >= 65 && student == false||true){
+            product = "Senior Account";
+        }
+
         // Junior Saver Account
         if(age < 18){
             product = "Junior Saver Account";
         }
 
-        // Senior Account
-        if(age >= 65){
-            product = "Senior Account";
-        }
-
         // Current Account Plus
-       if(income > 40000 && age > 17){
+       if(income > 40000 && age > 17 && student == false||true){
            product = "Current Account Plus";
        }
         // Student Account
@@ -43,7 +45,4 @@ public class Product {
         return product;
     }
 
-    public String sendProductOffer(String offer){
-        return "Hello";
-    }
 }

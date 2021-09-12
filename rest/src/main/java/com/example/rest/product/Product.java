@@ -16,7 +16,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class Product {
     CustomerDetails customerDetails;
     @PostMapping("get/products")
-    public String makeOffer(@RequestBody CustomerDetails customerDetails) {
+    public String makeOffer(@RequestBody CustomerDetails customerDetails) throws Exception{
+        ObjectMapper objectMapper = new ObjectMapper();
 //        System.out.print(customerDetails);
         int age = customerDetails.age;
         int income = customerDetails.income;
@@ -42,7 +43,7 @@ public class Product {
         if(student == true && age > 17){
             product = "Student Account";
         }
-        return product;
+        return objectMapper.writeValueAsString(product);
     }
 
 }

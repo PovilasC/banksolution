@@ -17,7 +17,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -28,7 +31,7 @@ class ProductTest {
     CustomerDetails customerDetails;
     @Test
     // testing if we get the right offer based on the input
-    void checkConditionMatch() {
+    void checkConditionMatch() throws Exception{
 
      customerDetails = new CustomerDetails(77, false, 200);
         Product product = new Product();
@@ -63,8 +66,8 @@ class ProductTest {
         mvcResult = mvc.perform(post("/api/get/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapToJson(customerSenior )))
-                .andExpect(status().isOk()).andReturn();
-        String content = mvcResult.getResponse().getContentAsString();
+                .andExpect(status().isOk()).andExpect(content().string(mapToJson("Current Account Plus"))).andReturn();
+//        String content = mvcResult.getResponse().getContentAsString();
 //        assertEquals("Senior Account", content);
 
     }

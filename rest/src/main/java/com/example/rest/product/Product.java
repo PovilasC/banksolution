@@ -15,7 +15,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class Product {
     CustomerDetails customerDetails;
     @PostMapping("get/products")
-    public String postBody(@RequestBody CustomerDetails customerDetails) {
+    public String makeOffer(@RequestBody CustomerDetails customerDetails) {
 //        System.out.print(customerDetails);
         int age = customerDetails.age;
         int income = customerDetails.income;
@@ -46,6 +46,4 @@ public class Product {
     public String sendProductOffer(String offer){
         return "Hello";
     }
-
-
 }

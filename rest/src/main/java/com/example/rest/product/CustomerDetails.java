@@ -1,5 +1,9 @@
 package com.example.rest.product;
 
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonSerialize
 public class CustomerDetails {
     int age;
     boolean student;

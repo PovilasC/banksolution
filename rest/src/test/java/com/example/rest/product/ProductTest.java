@@ -51,10 +51,10 @@ class ProductTest {
     // check if REST returns correct product offers based on input
     @Test
     void juniorAcc() throws Exception {
-        customerDetails = new CustomerDetails(17, false, 0);
+//        customerDetails = new CustomerDetails(17, false, 0);
         mvcResult = mvc.perform(post("/api/get/products")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(gson.toJson(customerDetails)))
+                        .content(gson.toJson(new CustomerDetails(17, false, 0))))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Junior Saver Account")).andReturn();
     }
@@ -62,38 +62,54 @@ class ProductTest {
     // check if REST returns correct product offers based on input
     @Test
     void seniorAcc() throws Exception {
-        // object to test with
-        customerDetails = new CustomerDetails(77, false, 0);
+//        customerDetails = new CustomerDetails(77, false, 0);
         mvcResult = mvc.perform(post("/api/get/products")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(gson.toJson(customerDetails)))
+                .content(gson.toJson(new CustomerDetails(77, false, 0))))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Senior Account")).andReturn();
     }
 
     @Test
-    void offerForJunior() throws Exception {
-
-        customerDetails = new CustomerDetails(16, false, 0);
+    void currentAccount() throws Exception {
+//        customerDetails = new CustomerDetails(18, false, 1);
         mvcResult = mvc.perform(post("/api/get/products")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(mapToJson(customerDetails )))
-                .andExpect(status().isOk()).andReturn();
-//        assertEquals("Junior Saver Account", mvcResult.getResponse().getContentAsString());
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(new CustomerDetails(18, false, 1))))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Current Account")).andReturn();
     }
 
     @Test
-    void offerForSenior() throws Exception {
-        CustomerDetails customerSenior = new CustomerDetails(65, false, 0);
+    void currentAccountPlus() throws Exception {
+//        customerDetails = new CustomerDetails(18, false, 40001);
         mvcResult = mvc.perform(post("/api/get/products")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(gson.toJson(customerSenior)))
-                .andExpect(status().isOk()).andExpect(content().string(mapToJson("Senior Account"))).andReturn();
-        String content = mvcResult.getResponse().getContentAsString();
-        assertEquals("Senior Account", content);
-
-
+                        .content(gson.toJson(new CustomerDetails(18, false, 40001))))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Current Account Plus")).andReturn();
     }
+
+//    @Test
+//    void offerForJunior() throws Exception {
+//
+//        customerDetails = new CustomerDetails(16, false, 0);
+//        mvcResult = mvc.perform(post("/api/get/products")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(mapToJson(customerDetails )))
+//                .andExpect(status().isOk()).andReturn();
+//    }
+
+//    @Test
+//    void offerForSenior() throws Exception {
+//        CustomerDetails customerSenior = new CustomerDetails(65, false, 0);
+//        mvcResult = mvc.perform(post("/api/get/products")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(gson.toJson(customerSenior)))
+//                .andExpect(status().isOk()).andExpect(content().string(mapToJson("Senior Account"))).andReturn();
+//        String content = mvcResult.getResponse().getContentAsString();
+//        assertEquals("Senior Account", content);
+//    }
 
     protected String mapToJson(Object obj) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();

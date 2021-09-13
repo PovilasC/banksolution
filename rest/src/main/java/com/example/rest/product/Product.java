@@ -33,6 +33,14 @@ public class Product {
             product = "Senior Account";
         }
 
+        if(age >17 && income > 0) {
+            product = "Current Account";
+        }
+
+        if(age >17 && income > 40000) {
+            product = "Current Account Plus";
+        }
+
         System.out.println(product);
         return product;
     }

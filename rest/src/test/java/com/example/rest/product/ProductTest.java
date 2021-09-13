@@ -48,29 +48,27 @@ class ProductTest {
     private CustomerDetails customerDetails;
     Gson gson = new Gson();
 
+    // check if REST returns correct product offers based on input
     @Test
-    void hello() throws Exception {
-        // object to test with
+    void juniorAcc() throws Exception {
         customerDetails = new CustomerDetails(17, false, 0);
         mvcResult = mvc.perform(post("/api/get/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(gson.toJson(customerDetails)))
                 .andExpect(status().isOk())
-//                .andExpect(content().string(gson.toJson("Old"))).andReturn();
-                .andExpect(content().string("Young")).andReturn();
+                .andExpect(content().string("Junior Saver Account")).andReturn();
     }
 
+    // check if REST returns correct product offers based on input
     @Test
-    void hello2() throws Exception {
+    void seniorAcc() throws Exception {
         // object to test with
         customerDetails = new CustomerDetails(77, false, 0);
         mvcResult = mvc.perform(post("/api/get/products")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(gson.toJson(customerDetails)))
                 .andExpect(status().isOk())
-//                .andExpect(content().string(gson.toJson("Old"))).andReturn();
-                .andExpect(content().string("Old")).andReturn();
-
+                .andExpect(content().string("Senior Account")).andReturn();
     }
 
     @Test

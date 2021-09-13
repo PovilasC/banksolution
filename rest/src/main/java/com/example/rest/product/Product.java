@@ -24,12 +24,13 @@ public class Product {
         boolean student = customerDetails.student;
         String product = "";
 
+
         if(age < 18) {
-            product = "Young";
+            product = "Junior Saver Account";
         }
 
-        if(age > 65) {
-            product = "Old";
+        if(age >=65) {
+            product = "Senior Account";
         }
 
         System.out.println(product);

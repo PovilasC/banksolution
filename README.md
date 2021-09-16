@@ -1,4 +1,4 @@
-BANK APPLICATION
+BANK APPLICATION [BACKEND]
 ***************************************************
 
 To run the app navigate to "rest" folder and run this commandline "mvn spring-boot:run" <br>

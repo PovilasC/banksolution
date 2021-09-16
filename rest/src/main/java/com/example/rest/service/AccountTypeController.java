@@ -1,12 +1,7 @@
 package com.example.rest.service;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.google.gson.Gson;
 import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.web.bind.annotation.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.example.rest.service.BankCard;
-
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @CrossOrigin(origins = "*")
@@ -29,10 +24,6 @@ public class AccountTypeController {
 			BankCard bankCard = new BankCard("Junior Saver Account", "Debit");
 			return bankCard;
 		}
-//		else if (age < 18 && income > 12000) {
-//			BankCard bankCard = new BankCard("Junior Saver Account", "Debit, Credit");
-//			return bankCard;
-//		}
 
 		else if (age >= 65 && income < 12001) {
 			BankCard bankCard = new BankCard("Senior Account", "Debit");

@@ -39,6 +39,7 @@ class AccountTypeControllerTest {
     private MockMvc mvc;
     private MvcResult mvcResult;
     private CustomerDetails customerDetails;
+    private BankCard bankCard;
     Gson gson = new Gson();
 
     // check if REST returns correct product offers based on input
@@ -48,7 +49,12 @@ class AccountTypeControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(gson.toJson(new CustomerDetails(17, false, 0))))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Junior Saver Account")).andReturn();
+                .andExpect(content()
+//                        .string("Junior Saver Account")).andReturn();
+                        .json("{\n" +
+                                "    \"accountName\": \"Junior Saver Account\",\n" +
+                                "    \"bankCardName\": \"Debit\"\n" +
+                                "}")).andReturn();
     }
 
     // check if REST returns correct product offers based on input
@@ -72,44 +78,19 @@ class AccountTypeControllerTest {
 
     @Test
     void currentAccountPlus() throws Exception {
-//        customerDetails = new CustomerDetails(18, false, 40001);
         mvcResult = mvc.perform(post("/api/get/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(gson.toJson(new CustomerDetails(18, false, 40001))))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Current Account Plus")).andReturn();
     }
-
-//    @Test
-//    void offerForJunior() throws Exception {
-//
-//        customerDetails = new CustomerDetails(16, false, 0);
-//        mvcResult = mvc.perform(post("/api/get/products")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(mapToJson(customerDetails )))
-//                .andExpect(status().isOk()).andReturn();
-//    }
-
-//    @Test
-//    void offerForSenior() throws Exception {
-//        CustomerDetails customerSenior = new CustomerDetails(65, false, 0);
-//        mvcResult = mvc.perform(post("/api/get/products")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content(gson.toJson(customerSenior)))
-//                .andExpect(status().isOk()).andExpect(content().string(mapToJson("Senior Account"))).andReturn();
-//        String content = mvcResult.getResponse().getContentAsString();
-//        assertEquals("Senior Account", content);
-//    }
-
-    protected String mapToJson(Object obj) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(obj);
-    }
-    protected <T> T mapFromJson(String json, Class<T> clazz)
-            throws JsonParseException, JsonMappingException, IOException {
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(json, clazz);
+    @Test
+    void studentAccount() throws Exception {
+        mvcResult = mvc.perform(post("/api/get/products")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(new CustomerDetails(18, true, 40001))))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Student Account")).andReturn();
     }
 
 }

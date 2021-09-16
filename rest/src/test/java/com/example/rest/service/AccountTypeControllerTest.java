@@ -1,10 +1,9 @@
-package com.example.rest.product;
+package com.example.rest.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -16,22 +15,16 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.RequestBuilder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 //import com.google.code.gson;
 
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(Product.class)
-class ProductTest {
+@WebMvcTest(AccountTypeController.class)
+class AccountTypeControllerTest {
 //    @Test
 //    // testing if we get the right offer based on the input
 //    void checkConditionMatch() throws Exception{
@@ -51,7 +44,6 @@ class ProductTest {
     // check if REST returns correct product offers based on input
     @Test
     void juniorAcc() throws Exception {
-//        customerDetails = new CustomerDetails(17, false, 0);
         mvcResult = mvc.perform(post("/api/get/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(gson.toJson(new CustomerDetails(17, false, 0))))
@@ -62,7 +54,6 @@ class ProductTest {
     // check if REST returns correct product offers based on input
     @Test
     void seniorAcc() throws Exception {
-//        customerDetails = new CustomerDetails(77, false, 0);
         mvcResult = mvc.perform(post("/api/get/products")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(gson.toJson(new CustomerDetails(77, false, 0))))
@@ -72,7 +63,6 @@ class ProductTest {
 
     @Test
     void currentAccount() throws Exception {
-//        customerDetails = new CustomerDetails(18, false, 1);
         mvcResult = mvc.perform(post("/api/get/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(gson.toJson(new CustomerDetails(18, false, 1))))

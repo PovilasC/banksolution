@@ -1,4 +1,4 @@
-package com.example.rest.product;
+package com.example.rest.service;
 
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

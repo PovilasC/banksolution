@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 @JsonSerialize
 @NotNull
 public class BankCard extends AccountType{
-	String bankCardName;
+	protected String bankCardName;
 
 	public BankCard(String accountName, String bankCardName) {
 		super(accountName);
